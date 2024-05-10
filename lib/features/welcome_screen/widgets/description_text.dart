@@ -10,7 +10,7 @@ class DescriptionText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text("Thank you for your interest in our company, and welcome to our company. "
         "Sometimes it's time, sometimes it's time to look at the asset. Ultimately, but now.",
-      style: TextStyle(fontSize: 12),
+      style: Theme.of(context).textTheme.bodySmall,
       textAlign: TextAlign.center,);
   }
 }

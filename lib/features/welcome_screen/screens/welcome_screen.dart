@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import '../widgets/widgets.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -17,11 +17,10 @@ class WelcomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset("assets/images/cafe.png"),
-                  const Text("Welcome to",
-                    style: TextStyle(fontSize: 16),),
-                  const Text("OUR REMINDER",
-                    style: TextStyle(fontSize: 24,
-                        fontWeight: FontWeight.bold),),
+                  Text("Welcome to",
+                    style: Theme.of(context).textTheme.headlineSmall),
+                  Text("OUR REMINDER",
+                    style: Theme.of(context).textTheme.headlineLarge),
                   const Padding(
                     padding: EdgeInsets.fromLTRB(30, 12, 30, 0),
                     child: DescriptionText(),
@@ -31,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
             ),
             const Padding(
               padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
-              child: GetStartButton(),
+              child: GetStartButton(text: 'Get start'),
             ),
             const SizedBox(height:32),
           ],

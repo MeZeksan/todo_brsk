@@ -9,8 +9,21 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'ToDo App',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromRGBO(255, 208, 143, 1.0),
+        textTheme: const TextTheme(
+          headlineSmall: TextStyle(fontSize: 16.0),
+          headlineLarge: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+          bodySmall: TextStyle(fontSize: 12)
+        ),
+        scaffoldBackgroundColor: const Color(0xffffd08f),
+        elevatedButtonTheme:
+        ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.transparent,
+    shadowColor: Colors.transparent,
+    ),
       ),
+      ),
+
       home: WelcomeScreen(),
     );
   }
