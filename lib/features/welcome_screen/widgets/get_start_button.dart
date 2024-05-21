@@ -25,6 +25,7 @@ class GetStartButton extends StatelessWidget {
               child:
               Text(text,
                 style: const TextStyle(
+                  fontSize: 18,
                     color: Colors.white,
                     fontWeight: FontWeight.bold
                 ),),
