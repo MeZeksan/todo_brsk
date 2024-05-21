@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_brsk/features/autorization_screen/screens/view.dart';
 import 'package:todo_brsk/features/registration_screen/screens/view.dart';
 import 'package:todo_brsk/features/welcome_screen/screens/view.dart';
 
@@ -27,7 +28,7 @@ class App extends StatelessWidget {
       ),
       ),
 
-      home: const RegistrationScreen(),
+      home: const AutorizationScreen(),
     );
   }
 }

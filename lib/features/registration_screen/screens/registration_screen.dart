@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_brsk/features/registration_screen/widgets/widgets.dart';
+import 'package:todo_brsk/features/autorization_screen/screens/view.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
@@ -32,12 +33,11 @@ class RegistrationScreen extends StatelessWidget {
               const SizedBox(height:32),
               const GetStartButton(text: 'Register'),
               const SizedBox(height:16),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Already have an account?',
-                    style: Theme.of(context).textTheme.labelSmall,),
-                  const ButtonText(text: 'Sing in'),
+                  Text('Already have an account?',),
+                  ButtonText(text: 'Sing in',nextScreen: AutorizationScreen(),),
                 ],)
             ],
           ),
