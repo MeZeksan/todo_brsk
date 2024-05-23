@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todo_brsk/features/autorization_screen/screens/view.dart';
 import 'package:todo_brsk/features/registration_screen/screens/view.dart';
 import 'package:todo_brsk/features/welcome_screen/screens/view.dart';
@@ -8,7 +9,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       title: 'ToDo App',
       theme: ThemeData(
         fontFamily: 'Poppins',
@@ -27,8 +29,23 @@ class App extends StatelessWidget {
     ),
       ),
       ),
-
-      home: const AutorizationScreen(),
     );
   }
 }
+
+final _router = GoRouter(
+  initialLocation: '/', //откуда идет старт приложения
+  routes: [
+    GoRoute(path: '/',  //обязательный маршрут
+        builder: (context,state)=> const WelcomeScreen()
+    ),
+    GoRoute(
+      path: '/autorization_page',
+      builder: (context, state) =>const AutorizationScreen(),
+    ),
+    GoRoute(path: '/registration_page',
+        builder: (context,state)=>const RegistrationScreen()
+    ),
+
+  ],
+);

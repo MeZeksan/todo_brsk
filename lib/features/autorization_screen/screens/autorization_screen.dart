@@ -25,15 +25,15 @@ class AutorizationScreen extends StatelessWidget {
                 const SizedBox(height:20),
                 const RoundTextField(hint: 'Enter password'),
                 const SizedBox(height:60),
-                const ButtonText(text: 'Forgot your password?',nextScreen: RegistrationScreen()),
+                const ButtonText(text: 'Forgot your password?',route: '/registration_page',),
                 const SizedBox(height:60),
-                GetStartButton(text: 'Sign in'),
+                const GetStartButton(text: 'Sign in',route: 'TODO'), // ЗАГЛУШКА
                 const SizedBox(height:20),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Don't have an account?"),
-                    ButtonText(text: 'Sing up',nextScreen: RegistrationScreen(),)
+                    ButtonText(text: 'Sing up',route: '/registration_page',)
                   ],
                 )
               ],

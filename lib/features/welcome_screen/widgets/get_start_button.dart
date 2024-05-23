@@ -1,11 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class GetStartButton extends StatelessWidget {
   final String text;
+  final String route;
   const GetStartButton({
     super.key,
-    required this.text,
+    required this.text, required this.route,
   });
 
   @override
@@ -21,7 +23,7 @@ class GetStartButton extends StatelessWidget {
                 gradient: LinearGradient(
                     colors: [ Color(0xffF4C27F),Color(0xffD8605B)])),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {context.go(route);},
               child:
               Text(text,
                 style: const TextStyle(

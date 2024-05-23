@@ -32,13 +32,13 @@ class RegistrationScreen extends StatelessWidget {
                 const SizedBox(height:16),
                 const RoundTextField(hint: 'Confirm password'),
                 const SizedBox(height:32),
-                const GetStartButton(text: 'Register'),
+                const GetStartButton(text: 'Register',route: 'TODO'),  // ЗАГЛУШКА
                 const SizedBox(height:16),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Already have an account?',),
-                    ButtonText(text: 'Sing in',nextScreen: AutorizationScreen(),),
+                    ButtonText(text: 'Sing in',route: '/autorization_page'),
                   ],)
               ],
             ),

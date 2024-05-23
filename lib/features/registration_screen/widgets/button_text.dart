@@ -1,24 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:todo_brsk/features/registration_screen/screens/view.dart';
 
 class ButtonText extends StatelessWidget {
   final String text;
-  final Widget nextScreen;
+  final String route;
   const ButtonText({
-    super.key, required this.text, required this.nextScreen,
+    super.key, required this.text, required this.route,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => nextScreen),
-        );
-      },
+      onTap: () {context.go(route);},
       child: GradientText(
         text,
         style: Theme.of(context).textTheme.labelSmall,
