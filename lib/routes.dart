@@ -1,6 +1,5 @@
 
 import 'package:go_router/go_router.dart';
-import 'package:go_router/go_router.dart';
 import 'package:todo_brsk/features/autorization_screen/screens/view.dart';
 import 'package:todo_brsk/features/registration_screen/screens/view.dart';
 import 'package:todo_brsk/features/welcome_screen/screens/view.dart';
