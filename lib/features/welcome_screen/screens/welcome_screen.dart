@@ -30,7 +30,8 @@ class WelcomeScreen extends StatelessWidget {
             ),
             const Padding(
               padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
-              child: GetStartButton(text: 'Get start',route: '/registration_page',),
+              child: GetStartButton(text: 'Get start',
+                route: '/registration_page',),
             ),
             const SizedBox(height:32),
           ],
