@@ -2,8 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:todo_brsk/features/registration_screen/widgets/widgets.dart';
 import 'package:todo_brsk/features/autorization_screen/screens/view.dart';
 
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
+
+  @override
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+
+  //контроллеры текста в TextField
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confrimPasswordController = TextEditingController();
+
+  //очищение памяти от контроллеров
+  @override
+  void dispose() {
+   _userNameController.dispose();
+   _emailController.dispose();
+    _passwordController.dispose();
+    _confrimPasswordController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +47,17 @@ class RegistrationScreen extends StatelessWidget {
                 Text('Let’s help you meet up your tasks',
                 style: Theme.of(context).textTheme.headlineSmall,),
                 const SizedBox(height:16),
-                const RoundTextField(hint: 'Enter your full name'),
+                 RoundTextField(hint: 'Enter your full name',
+                  controller:_userNameController),
                 const SizedBox(height:16),
-                const RoundTextField(hint: 'Enter your email'),
+                 RoundTextField(hint: 'Enter your email',
+                 controller: _emailController,),
                 const SizedBox(height:16),
-                const RoundTextField(hint: 'Enter your password'),
+                 RoundTextField(hint: 'Enter your password',
+                 controller: _passwordController,),
                 const SizedBox(height:16),
-                const RoundTextField(hint: 'Confirm password'),
+                 RoundTextField(hint: 'Confirm password',
+                 controller: _confrimPasswordController,),
                 const SizedBox(height:32),
                 const GetStartButton(text: 'Register',route: 'TODO'),  // ЗАГЛУШКА
                 const SizedBox(height:16),
