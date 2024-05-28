@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:todo_brsk/features/registration_screen/screens/view.dart';
-import 'package:todo_brsk/features/welcome_screen/screens/view.dart';
+import 'package:go_router/go_router.dart';
+import 'package:todo_brsk/routes.dart';
+
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'ToDo App',
       theme: ThemeData(
         fontFamily: 'Poppins',
@@ -26,8 +28,6 @@ class App extends StatelessWidget {
     ),
       ),
       ),
-
-      home: const RegistrationScreen(),
     );
   }
 }
