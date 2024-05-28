@@ -12,7 +12,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/autorization_page',
-      builder: (context, state) =>const AutorizationScreen(),
+      builder: (context, state) =>const AuthorizationScreen(),
     ),
     GoRoute(path: '/registration_page',
         builder: (context,state)=>const RegistrationScreen()

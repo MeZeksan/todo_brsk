@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:todo_brsk/features/registration_screen/widgets/widgets.dart';
-import 'package:todo_brsk/features/autorization_screen/screens/view.dart';
+import 'package:todo_brsk/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -10,6 +12,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+
+  final FirebaseAuthService _auth = FirebaseAuthService();
 
   //контроллеры текста в TextField
   final TextEditingController _userNameController = TextEditingController();
@@ -26,7 +30,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     _confrimPasswordController.dispose();
     super.dispose();
   }
-
+  void _signUp() async{
+    String username = _userNameController.text;
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
+    if(password == _confrimPasswordController.text){
+      if(user != null){
+        print("User is successfully created");
+        context.go('/');
+      }
+      else{
+        print("Error");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +72,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                  controller: _emailController,),
                 const SizedBox(height:16),
                  RoundTextField(hint: 'Enter your password',
-                 controller: _passwordController,),
+                 controller: _passwordController,
+                   obscureText: true,),
                 const SizedBox(height:16),
                  RoundTextField(hint: 'Confirm password',
-                 controller: _confrimPasswordController,),
+                 controller: _confrimPasswordController,
+                   obscureText: true,),
                 const SizedBox(height:32),
-                const GetStartButton(text: 'Register',route: 'TODO'),  // ЗАГЛУШКА
+                 GetStartButton(text: 'Register',
+                     onPressed: _signUp),
                 const SizedBox(height:16),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,

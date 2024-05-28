@@ -1,1 +1,1 @@
-export 'autorization_screen.dart';
+export 'authorization_screen.dart';

@@ -1,10 +1,19 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../widgets/widgets.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
 
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  void _nextToAuthorization() async{
+    context.go('/autorization_page');
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +37,11 @@ class WelcomeScreen extends StatelessWidget {
                   ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
+             Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
               child: GetStartButton(text: 'Get start',
-                route: '/registration_page',),
+                onPressed: _nextToAuthorization,
+                ),
             ),
             const SizedBox(height:32),
           ],
