@@ -21,6 +21,7 @@ class DashboardScreen extends StatelessWidget {
                 background: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const SizedBox(height: 60,),
                     const Icon(
                       Icons.account_circle_outlined,
                       size: 80,),
@@ -34,7 +35,7 @@ class DashboardScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     ElevatedButton(
                         onPressed:() {},
                         style: ElevatedButton.styleFrom(
@@ -50,26 +51,38 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
             ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children:[
-                  AnalogClock(
+                  const SizedBox(height: 30,),
+                  const AnalogClock(
                     width: 120,
                     height: 120,
                     isLive: true,
                     textScaleFactor: 1.5,
+                    showDigitalClock: false,
                     numberColor: Color(0xffF4C27F),
                     decoration: BoxDecoration(
                         color: Color(0xffF5EFEF),
-                        shape: BoxShape.circle),
+                        shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                          color:Color(0xffF4C27F),
+                          blurRadius: 9,
+                          offset:Offset(0, 3)
+                      )
+                    ]),
                     minuteHandColor: Color(0xffF4C27F),
-                  )
+                  ),
+                  const SizedBox(height: 30,),
+                  Text('Good Afternoon',
+                  style: Theme.of(context).textTheme.labelSmall,)
                   ]
               ),
             ),
-          )
+          ),
+          SliverToBoxAdapter()
         ],
       ),
     );
