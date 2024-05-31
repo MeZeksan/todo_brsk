@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:todo_brsk/routes.dart';
 
 
@@ -17,7 +16,8 @@ class App extends StatelessWidget {
           headlineSmall: TextStyle(fontSize: 16.0),
           headlineLarge: TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold),
           bodySmall: TextStyle(fontSize: 12),
-          labelSmall: TextStyle( fontSize: 16, fontWeight: FontWeight.bold)
+          labelSmall: TextStyle( fontSize: 16, fontWeight: FontWeight.bold),
+          displaySmall: TextStyle(fontSize: 12,color: Color(0xffD8605B))
         ),
         scaffoldBackgroundColor: const Color(0xffffd08f),
         elevatedButtonTheme:
