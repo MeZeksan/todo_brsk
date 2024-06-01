@@ -39,7 +39,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     if(password == _confrimPasswordController.text){
       if(user != null){
         developer.log("User is successfully created");
-        context.go('/');
+        context.go('/dashboard_page');
       }
       else{
         developer.log("Error");
@@ -83,11 +83,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                  GetStartButton(text: 'Register',
                      onPressed: _signUp),
                 const SizedBox(height:16),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Already have an account?',),
-                    ButtonText(text: 'Sing in',route: '/autorization_page'),
+                    ButtonText(text: 'Sing in',onTap: () => context.go('/autorization_page'),),
                   ],)
               ],
             ),

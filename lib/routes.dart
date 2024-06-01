@@ -6,7 +6,7 @@ import 'package:todo_brsk/features/welcome_screen/screens/view.dart';
 import 'features/dashboard_screen/screens/dashboard_screen.dart';
 
 final _router = GoRouter(
-  initialLocation: '/dashboard_page', //откуда идет старт приложения
+  initialLocation: '/', //откуда идет старт приложения
   routes: [
     GoRoute(path: '/',  //обязательный маршрут
         builder: (context,state)=> const WelcomeScreen()

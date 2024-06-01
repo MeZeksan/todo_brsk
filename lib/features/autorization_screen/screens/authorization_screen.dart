@@ -32,7 +32,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
     User? user = await _auth.signInWithEmailAndPassword(email, password);
       if(user != null){
         developer.log("User is successfully created");
-        context.go('/');
+        context.go('/dashboard_page');
       }
       else{
         developer.log("Error");
@@ -65,15 +65,15 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                  ),
 
                 const SizedBox(height:60),
-                const ButtonText(text: 'Forgot your password?',route: '/registration_page',),
+                ButtonText(text: 'Forgot your password?',onTap: () => context.go('/registration_page'),),
                 const SizedBox(height:60),
                  GetStartButton(text: 'Sign in',onPressed: _signIn),
                 const SizedBox(height:20),
-                const Row(
+                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Don't have an account?"),
-                    ButtonText(text: 'Sing up',route: '/registration_page',)
+                    ButtonText(text: 'Sing up',onTap: () => context.go('/registration_page'),)
                   ],
                 )
               ],

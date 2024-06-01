@@ -1,19 +1,20 @@
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class ButtonText extends StatelessWidget {
   final String text;
-  final String route;
+  final Function onTap;
   const ButtonText({
-    super.key, required this.text, required this.route,
+    super.key, required this.text, required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {context.go(route);},
+      onTap: () {
+        onTap();
+        },
       child: GradientText(
         text,
         style: Theme.of(context).textTheme.labelSmall,
