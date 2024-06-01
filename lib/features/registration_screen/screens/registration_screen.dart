@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_brsk/features/registration_screen/widgets/widgets.dart';
 import 'package:todo_brsk/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'dart:developer' as developer;
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -37,11 +38,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
     if(password == _confrimPasswordController.text){
       if(user != null){
-        print("User is successfully created");
+        developer.log("User is successfully created");
         context.go('/');
       }
       else{
-        print("Error");
+        developer.log("Error");
       }
     }
   }

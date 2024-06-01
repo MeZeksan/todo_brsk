@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todo_brsk/features/autorization_screen/widgets/widgets.dart';
 import 'package:todo_brsk/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'dart:developer' as developer;
+
 class AuthorizationScreen extends StatefulWidget {
   const AuthorizationScreen({super.key});
   @override
@@ -29,11 +31,11 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
     String password = _passwordController.text;
     User? user = await _auth.signInWithEmailAndPassword(email, password);
       if(user != null){
-        print("User is successfully created");
+        developer.log("User is successfully created");
         context.go('/');
       }
       else{
-        print("Error");
+        developer.log("Error");
       }
   }
 
