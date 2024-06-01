@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:one_clock/one_clock.dart';
 import 'package:todo_brsk/features/dashboard_screen/widgets/widgets.dart';
 
@@ -9,11 +11,12 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: Colors.white,
-      body: CustomScrollView( //обязательный виджет для Sliver
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),//обязательный виджет для Sliver
         slivers: [
             SliverAppBar( //верхнее пространство сливера
               backgroundColor: Color(0xffffd08f),
-              floating: true,
+              pinned: true,
               title: Text('Account'),
               expandedHeight: 280,
               //flexibleSpace - это наполнение аппбара, actions немного другое
@@ -82,9 +85,34 @@ class DashboardScreen extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter()
+           SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(32, 32, 32, 0),
+              child: Column(
+                children: [
+                  Text('Tasks List',
+                  style: Theme.of(context).textTheme.headlineLarge,),
+                  SizedBox(height: 16,),
+                  Container(
+                  height: 250,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: const [
+                      BoxShadow(
+                      color:Colors.grey,
+                      blurRadius: 9,
+                      offset:Offset(0, 3)
+                      )
+                  ]),
+                ),
+                  SizedBox(height: 230,)]),
+            ),
+          ),
+          
         ],
       ),
     );
   }
 }
+
