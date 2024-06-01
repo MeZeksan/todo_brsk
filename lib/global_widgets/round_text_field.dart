@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RoundTextField extends StatelessWidget {
   final String hint;
@@ -23,6 +24,9 @@ class RoundTextField extends StatelessWidget {
     return SizedBox(
       height: 51,
       child: TextField(
+        inputFormatters: [ //на время отключил возможность ставить пробелы
+          FilteringTextInputFormatter.deny(RegExp(r'\s'))
+        ],
         obscureText: isObscureText(),
         controller: controller,
         decoration: InputDecoration(

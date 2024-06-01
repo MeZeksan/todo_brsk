@@ -35,8 +35,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     String username = _userNameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
-    User? user = await _auth.signUpWithEmailAndPassword(email, password);
-    if(password == _confrimPasswordController.text){
+    String confirmPassword = _confrimPasswordController.text;
+
+    if(username.isEmpty || email.isEmpty ||
+        password.isEmpty ||confirmPassword.isEmpty ){
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill in all the input fields')),
+      );
+    }
+    if(password == confirmPassword){
+      User? user = await _auth.signUpWithEmailAndPassword(email, password);
       if(user != null){
         developer.log("User is successfully created");
         context.go('/dashboard_page');

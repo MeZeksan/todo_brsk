@@ -29,6 +29,11 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
   void _signIn() async{
     String email = _emailController.text;
     String password = _passwordController.text;
+    if(email.isEmpty || password.isEmpty){
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill in all the input fields')),
+      );
+    }
     User? user = await _auth.signInWithEmailAndPassword(email, password);
       if(user != null){
         developer.log("User is successfully created");
