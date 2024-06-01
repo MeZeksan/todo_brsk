@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-import 'package:todo_brsk/features/registration_screen/screens/view.dart';
 
 class ButtonText extends StatelessWidget {
   final String text;
