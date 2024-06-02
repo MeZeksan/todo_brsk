@@ -1,6 +1,5 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'dart:developer' as developer;
 class FirebaseAuthService{
   // экземлпяр firebase, позволяет получить доступ к методам аутентификации Firebase.
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -15,7 +14,7 @@ class FirebaseAuthService{
           password: password);
       return credential.user;
     }catch(e){
-      print("Some error $e");
+      developer.log("Some error $e");
     }
     return null;
   }
@@ -30,7 +29,7 @@ class FirebaseAuthService{
           password: password);
       return credential.user;
     }catch(e){
-      print("Some error $e");
+      developer.log('Error $e');
     }
     return null;
   }
