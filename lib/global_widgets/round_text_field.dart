@@ -28,9 +28,8 @@ class RoundTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 51,
       child: TextFormField(
-        validator: validator,
+        validator: validator, //валидация введенных данных
         inputFormatters: [ //на время отключил возможность ставить пробелы
           FilteringTextInputFormatter.deny(RegExp(r'\s'))
         ],
@@ -42,6 +41,10 @@ class RoundTextField extends StatelessWidget {
             fontSize: 13
           ),
           hintText: hint,
+          //вместо ограничения текстфилда, используй вот эти два параметра
+          isDense: true,
+          contentPadding: const EdgeInsets.all(16),
+
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(

@@ -22,7 +22,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confrimPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   //очищение памяти от контроллеров
   @override
@@ -30,16 +30,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
    _userNameController.dispose();
    _emailController.dispose();
     _passwordController.dispose();
-    _confrimPasswordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
   void _signUp() async{
     String username = _userNameController.text;
     String email = _emailController.text;
     String password = _passwordController.text;
-    String confirmPassword = _confrimPasswordController.text;
+    String confirmPassword = _confirmPasswordController.text;
 
-    _formKey.currentState!.validate();
+    _formKey.currentState!.validate(); //валидация
 
     if(username.isEmpty || email.isEmpty ||
         password.isEmpty ||confirmPassword.isEmpty ){
@@ -47,7 +47,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         const SnackBar(content: Text('Please fill in all the input fields')),
       );
     }
-    if(password == confirmPassword){
+    if(password == confirmPassword && username.isNotEmpty){
       User? user = await _auth.signUpWithEmailAndPassword(email, password);
       if(user != null){
         developer.log("User is successfully created");
@@ -58,7 +58,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       }
     }
   }
-  String? validateEmail(String? email){
+  String? validateEmail(String? email){ //проверка почты
     final bool emailValid =
     RegExp(r'\S+@\S+\.\S+')
         .hasMatch(email ?? '');
@@ -74,7 +74,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(32, 48, 32, 0),
           child: Center(
-            child: Form(
+            child: Form( //обязателен, чтобы отслеживать и проводить валидацию
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -90,6 +90,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   const SizedBox(height:16),
                    RoundTextField(hint: 'Enter your full name',
                     controller:_userNameController,
+                   validator: (name) =>
+                   name!.isEmpty
+                       ? 'The name should not be empty'
+                       : null,
                    icon: const Icon(Icons.face),),
                   const SizedBox(height:16),
                    RoundTextField(hint: 'Enter your email',
@@ -107,7 +111,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                      icon: const Icon(Icons.fingerprint),),
                   const SizedBox(height:16),
                    RoundTextField(hint: 'Confirm password',
-                   controller: _confrimPasswordController,
+                   controller: _confirmPasswordController,
                      obscureText: true,
                      validator: (password) =>
                      password!.length < 8
@@ -115,7 +119,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                          :null,
                      icon: const Icon(Icons.fingerprint),),
                   const SizedBox(height:32),
-                   GetStartButton(text: 'Register',
+                   GraidentElevatedButton(text: 'Register',
                        onPressed: _signUp),
                   const SizedBox(height:16),
                   Row(
