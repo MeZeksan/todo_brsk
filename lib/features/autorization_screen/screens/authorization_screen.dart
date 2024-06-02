@@ -43,7 +43,15 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
         developer.log("Error");
       }
   }
-
+  String? validateEmail(String? email){
+    final bool emailValid =
+    RegExp(r'\S+@\S+\.\S+')
+        .hasMatch(email ?? '');
+    if(!emailValid){
+      return 'Please enter a valid email';
+    }
+    return null;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,10 +71,17 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
 
                 const SizedBox(height:60),
                  RoundTextField(hint: 'Enter your email',
-                controller: _emailController,),
+                controller: _emailController,
+                 validator: validateEmail,
+                   icon: const Icon(Icons.business_center),),
                 const SizedBox(height:20),
                  RoundTextField(hint: 'Enter password',
                  controller: _passwordController, obscureText: true,
+                   validator: (password) =>
+                      password!.length < 8
+                       ?'Password should be at least 8 characters'
+                       :null,
+                   icon: const Icon(Icons.fingerprint),
                  ),
 
                 const SizedBox(height:60),

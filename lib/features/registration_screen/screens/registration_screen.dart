@@ -5,6 +5,8 @@ import 'package:todo_brsk/features/registration_screen/widgets/widgets.dart';
 import 'package:todo_brsk/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'dart:developer' as developer;
 
+final _formKey = GlobalKey<FormState>();
+
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
 
@@ -37,6 +39,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     String password = _passwordController.text;
     String confirmPassword = _confrimPasswordController.text;
 
+    _formKey.currentState!.validate();
+
     if(username.isEmpty || email.isEmpty ||
         password.isEmpty ||confirmPassword.isEmpty ){
       ScaffoldMessenger.of(context).showSnackBar(
@@ -54,7 +58,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       }
     }
   }
-
+  String? validateEmail(String? email){
+    final bool emailValid =
+    RegExp(r'\S+@\S+\.\S+')
+        .hasMatch(email ?? '');
+    if(!emailValid){
+      return 'Please enter a valid email';
+    }
+    return null;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,42 +74,58 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(32, 48, 32, 0),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("assets/images/cafe.png"),
-                Text('Get’s things done\nwith TODO',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                const SizedBox(height:12),
-                Text('Let’s help you meet up your tasks',
-                style: Theme.of(context).textTheme.headlineSmall,),
-                const SizedBox(height:16),
-                 RoundTextField(hint: 'Enter your full name',
-                  controller:_userNameController),
-                const SizedBox(height:16),
-                 RoundTextField(hint: 'Enter your email',
-                 controller: _emailController,),
-                const SizedBox(height:16),
-                 RoundTextField(hint: 'Enter your password',
-                 controller: _passwordController,
-                   obscureText: true,),
-                const SizedBox(height:16),
-                 RoundTextField(hint: 'Confirm password',
-                 controller: _confrimPasswordController,
-                   obscureText: true,),
-                const SizedBox(height:32),
-                 GetStartButton(text: 'Register',
-                     onPressed: _signUp),
-                const SizedBox(height:16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Already have an account?',),
-                    ButtonText(text: 'Sing in',onTap: () => context.go('/autorization_page'),),
-                  ],)
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset("assets/images/cafe.png"),
+                  Text('Get’s things done\nwith TODO',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  const SizedBox(height:12),
+                  Text('Let’s help you meet up your tasks',
+                  style: Theme.of(context).textTheme.headlineSmall,),
+                  const SizedBox(height:16),
+                   RoundTextField(hint: 'Enter your full name',
+                    controller:_userNameController,
+                   icon: const Icon(Icons.face),),
+                  const SizedBox(height:16),
+                   RoundTextField(hint: 'Enter your email',
+                   controller: _emailController,
+                   validator: validateEmail,
+                     icon: const Icon(Icons.business_center),),
+                  const SizedBox(height:16),
+                   RoundTextField(hint: 'Enter your password',
+                   controller: _passwordController,
+                     obscureText: true,
+                   validator: (password) =>
+                   password!.length < 8
+                     ?'Password should be at least 8 characters'
+                     :null,
+                     icon: const Icon(Icons.fingerprint),),
+                  const SizedBox(height:16),
+                   RoundTextField(hint: 'Confirm password',
+                   controller: _confrimPasswordController,
+                     obscureText: true,
+                     validator: (password) =>
+                     password!.length < 8
+                         ?'Password should be at least 8 characters'
+                         :null,
+                     icon: const Icon(Icons.fingerprint),),
+                  const SizedBox(height:32),
+                   GetStartButton(text: 'Register',
+                       onPressed: _signUp),
+                  const SizedBox(height:16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Already have an account?',),
+                      ButtonText(text: 'Sing in',onTap: () => context.go('/autorization_page'),),
+                    ],)
+                ],
+              ),
             ),
           ),
         ),
