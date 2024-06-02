@@ -44,16 +44,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     if(username.isEmpty || email.isEmpty ||
         password.isEmpty ||confirmPassword.isEmpty ){
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all the input fields')),
+        const SnackBar(content: Text('Please fill in all the input fields'),
+        backgroundColor: Color(0xff6c417f)),
       );
     }
-    if(password == confirmPassword && username.isNotEmpty){
+    if(password != confirmPassword){
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('The passwords you entered do not match'),
+            backgroundColor: Colors.red,));
+    }
+    else if(username.isNotEmpty){
       User? user = await _auth.signUpWithEmailAndPassword(email, password);
       if(user != null){
         developer.log("User is successfully created");
         context.go('/dashboard_page');
       }
       else{
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Something went wrong, maybe the user you entered already exists'),
+                backgroundColor: Colors.red,));
         developer.log("Error");
       }
     }
@@ -127,7 +136,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     children: [
                       Text('Already have an account?',),
                       ButtonText(text: 'Sing in',onTap: () => context.go('/autorization_page'),),
-                    ],)
+                    ],),
+                  const SizedBox(height:16),
                 ],
               ),
             ),

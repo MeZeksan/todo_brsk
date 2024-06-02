@@ -36,17 +36,24 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
 
     if(email.isEmpty || password.isEmpty){
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all the input fields')),
+        const SnackBar(content: Text('Please fill in all the input fields'),
+            backgroundColor: Color(0xff6c417f)),
       );
     }
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    else{
+      User? user = await _auth.signInWithEmailAndPassword(email, password);
       if(user != null){
         developer.log("User is successfully created");
         context.go('/dashboard_page');
       }
       else{
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('The wrong email or password was entered'),
+              backgroundColor: Colors.red),
+        );
         developer.log("Error");
       }
+    }
   }
 
   String? validateEmail(String? email){
@@ -104,7 +111,8 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                       Text("Don't have an account?"),
                       ButtonText(text: 'Sing up',onTap: () => context.go('/registration_page'),)
                     ],
-                  )
+                  ),
+                  const SizedBox(height:16),
                 ],
               ),
             ),
