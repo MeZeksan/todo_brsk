@@ -39,7 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ),
              Padding(
               padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-              child: GetStartButton(text: 'Get start',
+              child: GraidentElevatedButton(text: 'Get start',
                 onPressed: _nextToAuthorization,
                 ),
             ),

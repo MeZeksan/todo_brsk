@@ -40,6 +40,7 @@ dependencies:
   simple_gradient_text: ^1.3.0
   go_router: ^14.1.3
   firebase_auth: ^4.19.6
+  one_clock: ^2.0.1
 
 dev_dependencies:
   flutter_test:

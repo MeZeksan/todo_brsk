@@ -1,13 +1,12 @@
-
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class GetStartButton extends StatelessWidget {
+class GraidentElevatedButton extends StatelessWidget {
   final String text;
   final Function onPressed;
-  const GetStartButton({
+  const GraidentElevatedButton({
     super.key,
-    required this.text,required this.onPressed,
+    required this.text,
+    required this.onPressed,
   });
 
   @override
